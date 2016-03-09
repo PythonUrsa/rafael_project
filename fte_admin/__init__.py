@@ -1,0 +1,1 @@
+default_app_config = 'fte_admin.models.AdministrationConfig'
