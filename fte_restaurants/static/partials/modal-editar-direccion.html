@@ -1,0 +1,63 @@
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Editar dirección</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body">
+        <!-- content > container -->
+        <div class="modal-form">
+            <div class="modal-form-row row">
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                        <input type="text" name="street" placeholder="Calle"
+                            class="form-control input-grey"
+                            ng-model="street_name">
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 no-pad">
+                        <input type="text" name="addrNum" placeholder="Número"
+                            class="form-control input-grey"
+                            ng-model="street_number">
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-pad">
+                        <select ng-model="city"
+                            ng-options="city.id as city.name for city in cities.objects"
+                            id="city" name="city" class="form-control input-grey">
+                            <option value="">Ciudad</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                        <select ng-model="delivery_zone"
+                                ng-options="zone.id as zone.name for zone in zones.objects"
+                                id="selectbasic" name="selectbasic"
+                                class="form-control input-grey" required>
+                                <option value="">Sector</option>
+                            </select>
+                    </div>
+                    
+            </div>
+                
+            <div class="row no-pad">
+                
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                    <input type="text" name="addrName" placeholder="Nombre, ej: Oficina (opcional)"
+                    class="form-control input-grey" ng-model="associated_name">
+                </div>
+                
+                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-pad">
+                    <input type="text" name="reference" placeholder="Referencia (opcional)"
+                    class="form-control input-grey" ng-model="reference">
+                </div>
+
+            </div>
+        </div> 
+        <!-- .container END -->
+    </div>
+    <!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-clear" ng-click="dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-md btn-success" ng-click="ok()">Guardar</button>
+    </div><!-- /modal-footer -->

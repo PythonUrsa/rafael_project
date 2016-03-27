@@ -1,0 +1,227 @@
+<div id="main-content">
+		
+        <!-- page_header menu_header -->
+        <header class="page_header menu_header">
+             <div class="container">
+                <div class="row">
+                    <div class="rounded not-top">
+						<div class="rounded-img" style="background-image:url(/static/images/header-1290x345.jpg);">
+                        	
+                        </div>
+                        <div class="rounded-menu"> 
+                        
+                        	<!-- table-as -->
+                            <div class="table-as menu-details"> 
+                            	<div class="row-as"> 
+                                	<div class="cell-as brand">
+                                    	<div class="icon-brand"><img class="img-brand img-circle img-responsive img-center" ng-src="{{restaurant.thumb_logo_detail}}" alt=""><h1 class="menu-title">{{restaurant.name}}</h1></div>
+                                    </div>
+                                    
+                                    <div class="cell-as first">
+                                    	#{{restaurant.main_food}} #{{restaurant.second_food}}
+                                    </div>
+                                    
+                                    <div class="cell-as">
+                                    	Tiempo de Delivery: <strong>{{restaurant.delivery_time}} min</strong>
+                                    </div>
+                                    
+                                    <div class="cell-as">
+                                    	Mínimo de Delivery: <strong>RD${{restaurant.order_minimum | number:2}}</strong>
+                                    </div> 
+                            	</div> 
+                            </div> 
+                            <!-- table-as END -->
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+             </div>
+        </header>
+        <!-- page_header menu_header END -->
+    	  
+        <!-- content -->
+        <section class="content inner"> 
+        
+            <div class="container">
+        		
+				<div class="row">
+                	
+                    <!-- left content -->
+                    <div class="col-md-8">
+                    	
+                        <!-- tabs -->
+                        <ul class="nav nav-tabs nav-justifieds" data-tabs="tabs">
+                            <li class="active"><a data-target="#menu" data-toggle="tab">Menú</a></li>
+                            <li><a data-target="#informacion" data-toggle="tab">Información</a></li> 
+                        </ul>
+                        
+                        <div class="tab-content">
+                        	
+                            <!-- tab-pane -->
+                            <div class="tab-pane active" id="menu">
+                                
+                                <!-- panel-group -->
+                                
+                                <div class="panel-group" id="accordion">
+                                  
+                                  <div class="panel panel-primary">
+
+                                  <div class="panel panel-primary" ng-repeat="category in categories">
+                                  
+                                  	<!-- panel item #menu-entrada -->
+                                    <div class="panel-heading">
+                                      <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" data-target="#menu-{{category.name}}">{{category.name}}<i class="fa"></i></a>
+                                      </h4>
+                                    </div>
+                                    <div id="menu-{{category.name}}" class="panel-collapse collapse in">
+                                      <div class="panel-body">
+                                        
+                                        <div class="row list-menu"> 
+											     
+                                                <article class="col-lg-12" ng-if="!category.items.length">
+                                                    <h4>No hay Items Disponibles</h4>
+                                                </article>
+
+                                                <article class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item" ng-if="category.items.length" ng-repeat="item in category.items"> 
+                                                    <div class="text">
+                                                        <h3>{{item.name}}</h3>
+                                                        <p>{{item.description}}</p>
+                                                    </div>
+                                                    <div class="action">
+                                                    	<span class="price">RD${{item.price | number:2}}</span>
+                                                        <a href="" ng-click="open(item, null)" class="btn btn-success btn-xs">Añadir</a>
+                                                    </div>
+                                                </article>  
+                                              
+                                             
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                                    <!-- panel item #menu-entrada END -->
+                                  </div>  
+                                    
+
+                                  </div>
+                                  
+                                </div>
+                                <!-- panel-group END -->
+                                
+                            </div>
+                            <!-- tab-pane END -->
+                            
+                            <!-- tab-pane -->
+                            <div class="tab-pane" id="informacion">
+                                <h4 class="pane-title">Información de contacto</h4>
+                                <p><span class="fa fa-map-marker"></span> {{restaurant.address}}</p>
+                                <p><span class="fa fa-clock-o"
+                                ></span>{{schedule.start_time |  date:'shortTime'}} - {{schedule.finish_time | 
+                                date:'shortTime'}}</p>
+                                <p class="cards"
+                                ><img ng-if="mastercard"
+                                    ng-src="/static/images/mastercard-curved-32px.png" alt=" "
+                                /> <img ng-if="visa"
+                                    ng-src="/static/images/visa-curved-32px.png" alt=" "
+                                /> <img ng-if="american_express"
+                                    ng-src="/static/images/american-express-curved-32px.png" alt=" "
+                                /> <img ng-if="paypal"
+                                    ng-src="/static/images/paypal-curved-32px.png" alt=" " /></p>
+                                <div class="map">
+                                	<ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options" events='map.events'>
+                                        <ui-gmap-marker coords="marker.coords" idkey="marker.id">
+                                        </ui-gmap-marker>
+                                    </ui-gmap-google-map>
+     
+									
+                                </div>
+                            </div> 
+                            <!-- tab-pane END -->
+                            
+                        </div>
+                        <!-- tabs END -->
+                        
+                    </div>
+                    <!-- left content END -->
+                    
+                    <!-- right content (sidebar) -->
+                    <div class="col-md-4">
+                    	<aside class="sidebar">
+	                       <i class="sidebar-top"></i>
+                            <div class="wrap">
+                        		
+                                <div class="cart cart-sidebar">        
+                                 
+                                    <table class="table table-default" ng-if="authenticated">
+                                    	<tr>
+                                        	<td colspan="2">
+                                            	<div class="well"><strong>{{identification.name}} {{identification.lastname}}</strong></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<td><small class="iconized"><span class="fa fa-map-marker"></span> Delivery para:</small></td>
+                                            <td><div class="well"><a
+                                                data-toggle="modal" class="edit"  href=""
+                                                ng-click="open_addr()" data-target="#page-modal">
+                                                <span class="fa fa-edit"></span></a>
+                                                <strong>{{selectedAddress.street_name + ' ' +
+                                                selectedAddress.street_number + '(' +
+                                                selectedAddress.delivery_zone.name + ', ' +
+                                                selectedAddress.city.name + ')'}}</strong></div>
+                                                </td>
+                                        </tr>   
+                                	</table>
+                                    
+                                    <h4 class="cart-subtitle">Items</h4>
+                                    
+                                    <table class="table table-default table-cart"> 
+                                        <tr class="well-row" ng-repeat="order in current_order track by $index">
+                                        	<td class="t-name">{{order.item.category.name}}-{{order.item.name}}</td>
+                                            <td class="t-quantity">x{{order.quantity}}</td>
+                                            <td class="t-edit"><a href="" ng-click="open(order.item, order)"><span class="fa fa-edit"></span></a></td>
+                                            <td class="t-price"><strong>RD${{order.total_item | number:2}}</strong></td>
+                                            <td class="t-remove"><a href="" ng-click="remove($index)"><span class="fa fa-remove"></span></a></td>
+                                        </tr>   
+                                	</table>
+                                    
+                                    <table class="table table-default well" ng-if="current_order.length && !checkout_error">
+                                    	<tr>
+                                        	<td>Subtotal</td>
+                                            <td class="t-subtotal value"><strong>RD${{subTotal | number:2}}</strong></td>
+                                        </tr> 
+                                        <tr>
+                                        	<td>ITBIS</td>
+                                            <td class="t-itbis value"><strong>RD${{itbis | number:2}}</strong></td>
+                                        </tr> 
+                                        <tr>
+                                        	<td>Delivery fee</td>
+                                            <td class="t-delivery value"><strong>RD${{restaurant.delivery_cost | number:2}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                        	<td>Propina legal</td>
+                                            <td class="t-propina value"><strong>RD${{tip | number:2}}</strong></td>
+                                        </tr> 
+                                        <tr>
+                                        	<td>Total</td>
+                                            <td class="t-total value total"><strong>RD${{getTotal(subTotal, restaurant.delivery_cost) | number:2}}</strong></td>
+                                        </tr> 
+                                	</table>
+                                    <alert type="danger" ng-show="checkout_error">{{checkout_error}}</alert>
+                                    <a href="" ng-click="checkOrder()" ng-disabled="!current_order.length || checkout_error"
+                                    class="btn btn-lg btn-checkout btn-success">Checkout</a>
+                                      
+                                </div>
+                                
+                        	</div>
+                        </aside>                    
+                    </div>
+                    <!-- right content (sidebar) END -->
+                    
+                </div>
+                 
+            </div> 
+    	</section>
+       
+    
+    </div>

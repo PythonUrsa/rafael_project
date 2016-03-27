@@ -1,0 +1,269 @@
+    <!-- main-content -->
+	<div id="main-content">
+		
+        <!-- page_header -->
+        <header class="page_header" style="background-image:url(/static/images/header-1290x345.jpg);">
+             <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                </div>
+             </div>
+        </header>
+        <!-- page_header END -->
+    	  
+        <!-- content -->
+        <section class="content">
+            <form novalidate class="css-form" name="register_form">
+        	<!-- content > container -->
+
+            <div class="container">
+        		
+                <!-- content-triangle -->
+                <div class="content-triangle">
+                	<i class="bg-top"></i>
+                    
+                    <div class="reddot content-head">
+                        <h1 class="page-title">Registro</h1>
+                    </div>
+                     
+                    
+                    <div class="row user-info">
+                    
+                    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        	<div class="user-thumb">
+
+                                <img ng-hide="profile_picture" class="img-brand img-circle img-responsive img-center img-shadow" src="http://placehold.it/366x366" alt="">
+                                <img ng-show="profile_picture" class="img-brand img-circle img-responsive img-center img-shadow" ng-src="{{profile_picture.resized.dataURL}}" alt="">
+                                <div class="input-group">
+                                    <input id="picture_register"
+                                            type="file"
+                                            accept="image/*" 
+                                            image="profile_picture" 
+                                            resize-max-height="320"
+                                            resize-max-width="320"
+                                            resize-quality="1" />
+                                    <span class='label label-info' id="upload-file-info"></span>
+                                </div>
+  
+                            </div> 
+                        </div>
+                            <div class="pull-right">
+                                <small><p>Los campos marcados con <font color="red"><small>* </small>
+                                </font> son obligatorios</p></small>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            
+                            	<table class="table table-default">
+                                
+                                	<tr>
+                                    	<td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Nombre</strong></td>
+                                        <td><input type="text" name="first_name" placeholder="Nombre"
+                                                class="form-control input-grey input-italic" ng-required="true"
+                                                ng-model="user.first_name" required=""
+                                                ng-model-options="{ updateOn: 'blur' }">
+                                            <span ng-show="register_form.first_name.$touched &&
+                                            register_form.first_name.$error.required"
+                                            class="help-block"><small
+                                            >* Por favor ingrese su nombre.</small></span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                    	<td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Apellido</strong></td>
+                                        <td><input type="text" name="lastname" placeholder="Apellido"
+                                                class="form-control input-grey input-italic" ng-required="true"
+                                                ng-model="user.lastname" required=""
+                                                ng-model-options="{ updateOn: 'blur' }">
+                                            <span ng-show="register_form.lastname.$touched && register_form.lastname.$error.required"
+                                            class="help-block"><small
+                                            >* Por favor ingrese su apellido.</small></span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                    	<td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Email</strong></td>
+                                        <td><input type="email" name="email" placeholder="some_mail@mail.com"
+                                                    class="form-control input-grey input-italic" required
+                                                    ng-model="user.email" required=""
+                                                    ng-model-options="{ updateOn: 'blur' }">
+                                            <span ng-show="register_form.email.$touched &&
+                                            register_form.email.$error.required"
+                                            class="help-block"><small>* Por favor ingrese su email.</small
+                                            ></span>
+                                            <span ng-show="register_form.email.$touched &&
+                                            register_form.email.$error.email" class="help-block"><small
+                                            >El email ingresado no es valido.</small></span></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                    	<td class="labeled"><strong>Género</strong></td>
+                                        <td><label><input type="radio" name="gender" value="M" ng-checked="true" ng-model="user.gender"> Masculino</label>
+                                        <label><input type="radio" name="gender" value="F" ng-model="user.gender"> Femenino</label></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Cumpleaños</strong></td>
+                                        <td>
+                                            <p class="input-group">
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       datepicker-popup="{{format}}" 
+                                                       ng-model="user.birthday" 
+                                                       is-open="opened" 
+                                                       min-date="1-1-1900"
+                                                       max-date="'2015-06-22'" 
+                                                       datepicker-options="dateOptions" 
+                                                       ng-required="true" 
+                                                       close-text="Close" 
+                                                       placeholder="dd/mm/aaaa"/>
+                                                  <span class="input-group-btn">
+                                                    <button type="button" 
+                                                            class="btn btn-default" 
+                                                            ng-click="open($event)">
+                                                            <i class="fa fa-calendar" style="font-size: 25px;"></i>
+                                                    </button>
+                                                  </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                    	<td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Teléfono</strong></td>
+                                        <td><input type="text" name="phone"
+                                        placeholder="Escriba los números sin guión"
+                                        class="form-control input-grey input-italic" ng-model="user.phone"
+                                        required="" ng-model-options="{ updateOn: 'blur' }"
+                                        maxlength="10">
+                                        <span ng-show="register_form.phone.$touched &&
+                                        register_form.phone.$error.required"
+                                        class="help-block"><small
+                                        >* Por favor ingrese su telefono.</small></span></td>
+                                    </tr> 
+                                
+                                </table>
+                            
+                            </div>
+                        
+                        </div>
+                        
+                        <h3 class="row-title text-center">Contraseña</h3>
+                        
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-sm-offset-2">
+                                <table class="table table-default"> 
+                                    <tr>
+                                        <td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Contraseña</strong></td>
+                                        <td><input type="password" name="password" placeholder="Contraseña" class="form-control input-grey input-italic" ng-required="true" ng-model="user.password" required="" ng-model-options="{ updateOn: 'blur' }"
+                                        minlength="6" tooltip="Ingrese una contraseña de al menos 6 caracteres."  tooltip-trigger="focus" tooltip-placement="top">
+                                        <span ng-show="register_form.password.$touched &&
+                                        register_form.password.$error.required"
+                                        class="help-block"><small
+                                        >* Por favor ingrese su contraseña.</small></span>
+                                        <span ng-show="register_form.password.$touched &&
+                                        register_form.password.$error.minlength"
+                                        class="help-block"><small
+                                        >* La contraseña debe tener al menos 6 caracteres.</small></span></td>
+                                        
+                                    </tr> 
+                                    <tr>
+                                        <td class="labeled"><font color="red"><small>* </small>
+                                        </font><strong>Confirmar contraseña</strong></td>
+                                        <td><input type="password" name="confirmation" placeholder="Confirmar contraseña"
+                                            class="form-control input-grey input-italic" ng-required="true"
+                                            ng-model="user.confirmation" required=""
+                                            ng-model-options="{ updateOn: 'blur' }">
+                                        <span ng-show="register_form.confirmation.$touched &&
+                                        register_form.confirmation.$error.required"
+                                            class="help-block"><small
+                                            >* Por favor ingrese la la contraseña nuevamente.</small></span></td>
+                                    </tr> 
+                                </table>
+                            </div>
+                        </div>
+                         
+                        <h3 class="row-title text-center">Mis Direcciones</h3>
+                        
+                        <div>
+                            <div class="row no-pad">
+                            	
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                                	<input type="text" name="street" placeholder="Calle"
+                                        class="form-control input-grey"
+                                        ng-model="address.street_name"
+                                        required="" ng-model-options="{ updateOn: 'blur' }">
+                                        <span ng-show="register_form.street.$touched &&
+                                        register_form.street.$error.required"
+                                            class="help-block"><small
+                                            >* Por favor ingrese el nombre de su calle.</small></span>
+                                </div>
+                                
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 no-pad">
+                                	<input type="text" name="addrNum" placeholder="Número"
+                                        class="form-control input-grey"
+                                        ng-model="address.street_number"
+                                        required="" ng-model-options="{ updateOn: 'blur' }">
+                                        <span ng-show="register_form.addrNum.$touched &&
+                                        register_form.addrNum.$error.required"
+                                            class="help-block"><small
+                                            >* Por favor ingrese el numero.</small></span>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-pad">
+                                	<select ng-model="address.city"
+                                        ng-options="city.id as city.name for city in cities.objects"
+                                        id="city" name="city" class="form-control input-grey" required>
+                                        <option value="">Ciudad</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                                    <select ng-model="address.delivery_zone"
+                                        ng-options="zone.id as zone.name for zone in zones.objects"
+                                        id="selectbasic" name="selectbasic"
+                                        class="form-control input-grey" required>
+                                        <option value="">Sector</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row no-pad">
+                            	
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                                	<input type="text" name="addrName" placeholder="Nombre, ejemplo: Oficina"
+                                    class="form-control input-grey" ng-model="address.associated_name">
+                                </div>
+                                
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-pad">
+                                	<input type="text" name="reference" placeholder="Referencia (opcional)"
+                                    class="form-control input-grey" ng-model="address.reference">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row text-center">
+                        	<a href="" class="btn btn-success" ng-click="submit()" ng-hide="saving"
+                            ng-disabled="register_form.$invalid">Registrarme</a>
+                            <a href="" ng-show="saving"
+                            class="btn btn-primary btn-icon">Registrando <i class="fa fa-spinner"></i></a>
+                            <alert type="danger" ng-show="submit_error"
+                            >Error al registrarse: {{submit_error}}</alert>
+                    	</div>
+                    </div>
+                    <!-- .content-triangle END -->
+                    
+                </div> 
+                <!-- .container END -->
+            </form>
+    	</section>
+        <!-- section.content END -->
+    
+    </div>
+    <!-- #main-content END

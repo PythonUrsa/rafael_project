@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>F2E</title>
+
+	<!-- fonts.googleapis CSS -->
+	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	{% block stylesheets %}
+
+        <!-- Bootstrap -->
+        <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "css/toggle-switch.css" %}" rel="stylesheet">
+        <link href="{% static "css/style.css" %}" rel="stylesheet"> 
+        <link href="{% static "css/jquery-ui.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/jquery-ui.structure.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/jquery-ui.theme.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/responsive-calendar.css" %}" rel="stylesheet">
+        <link href="{% static "angucomplete-alt/angucomplete-alt.css" %}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>            
+
+    {% endblock %}
+
+    {% block scripts %}
+
+        <script src="{% static "underscore/underscore-min.js" %}"></script> 
+        <script src="{% static "jquery/dist/jquery.min.js" %}"></script>        
+        <script src="{% static "jquery-ui/jquery-ui.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="{% static "js/date-es-DO.js" %}"></script>
+        <script src="{% static "underscore.string/dist/underscore.string.min.js" %}"></script>       
+        <script src="{% static "angular/angular.min.js" %}"></script>
+        <script src="{% static "angular-resource/angular-resource.min.js" %}"></script> 
+        <script src="{% static "angular-ui-router/release/angular-ui-router.min.js" %}"></script>   
+        <script src="{% static "angular-bootstrap/ui-bootstrap-tpls.min.js" %}"></script>  
+        <script src="{% static "angucomplete-alt/angucomplete-alt.js" %}"></script>  
+        <script src="{% static "spin.js/spin.js" %}"></script>
+        <script src="{% static "angular-spinner/angular-spinner.js" %}"></script>
+        <script src="{% static "angular-sanitize/angular-sanitize.min.js" %}"></script>
+        <script src="{% static "angular-cookies/angular-cookies.min.js" %}"></script>
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCs-wxRoRho5EoH5s8_IBF-u4d21m91upM&sensor=false">
+        </script>
+        
+        <script src="{% static "lodash/dist/lodash.js" %}"></script>
+        <script src="{% static "angular-google-maps/dist/angular-google-maps.js" %}"></script>
+
+        <script src="{% static "js/customs.js" %}"></script>        
+        <script src="{% static "js/appRestaurant.js" %}"></script>
+        <script src="{% static "js/services/restaurantResources.js" %}"></script>
+        <script src="{% static "js/services/RestaurantNavigationService.js" %}"></script>
+        <script src="{% static "js/controllers/restaurantLoginController.js" %}"></script>
+        <script src="{% static "js/controllers/restaurantEditController.js" %}"></script>
+        <script src="{% static "js/controllers/newProductController.js" %}"></script>
+        <script src="{% static "js/controllers/newSectionController.js" %}"></script>
+        <script src="{% static "js/controllers/newExtraController.js" %}"></script>
+        <script src="{% static "js/controllers/newSelectableController.js" %}"></script>
+        <script src="{% static "js/controllers/editExtraController.js" %}"></script>
+        <script src="{% static "js/controllers/editSelectableController.js" %}"></script>
+        <script src="{% static "js/controllers/editInfoController.js" %}"></script>
+        <script src="{% static "js/controllers/baseRestaurantController.js" %}"></script>
+        <script src="{% static "js/controllers/aboutController.js" %}"></script>
+
+    {% endblock scripts %}
+
+	
+</head> 
+
+<body ng-app="appRestaurant" class="">
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation">
+        <div class="container">
+            
+            <div class="brand pull-left">
+                <a href="#"><img src="{% static "images/logoheader.png" %}" alt="main brand logo"/></a>
+            </div>
+
+            <div class="user pull-right" ng-controller="BaseRestaurantCtrl">
+                <a href ng-click="open()" ng-show="!isAuthenticated()">Login/Register <span class="glyphicon glyphicon-user"></span></a>
+                     <span class="dropdown" dropdown on-toggle="toggled(open)" ng-show="isAuthenticated()">
+                            <a href class="dropdown-toggle" dropdown-toggle >
+                                <span ng-bind=" 'Hola ' + authenticatedUser.name"></span>
+                                <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                            <ul class="dropdown-menu menu-f2e">
+                                <li> <a href ng-click="logout()">Logout</a> </li>
+                            </ul>
+                    </span>
+            </div>
+            
+        </div>
+        <!-- /.container -->
+    </nav>
+
+	<div id="main-content" ui-view>
+
+		<!-- page_header -->
+      
+    
+    </div>
+
+    <footer>
+    
+    	<div class="container">
+        
+                <div class="row">
+                      
+                        <ul class="footer-nav-bottom">
+                        
+                        	<li class=""><a ui-sref="about" target="_blank"><img class="img-responsive img-center" src="{% static "images/icons/group.png" %}"alt=""><span>Sobre nosotros</span></a></li>
+                            
+                            <li class=""><a ui-sref="contact" target="_blank"><img class="img-responsive img-center" src="{% static  "images/icons/contact.png" %}" alt=""><span>Contáctenos</span></a></li>
+                            
+                            <li class=""><a href="http://www.facebook.com/DeliveryRD" target="_blank"><img
+                                class="img-responsive img-center"
+                                src="{% static  "images/icons/facebook.png" %}"
+                                alt=""><span>Facebook</span></a></li>
+                            
+                            <li class=""><a href="http://www.twitter.com/DeliveryRD_do" target="_blank"><img
+                            class="img-responsive img-center"
+                            src="{% static "images/icons/twitter.png" %}" alt=""><span>Twitter</span></a></li>
+                            
+                            <li class=""><a href="http://www.instagram.com/DeliveryRD.do" target="_blank"><img
+                            class="img-responsive img-center"
+                            src="{% static "images/icons/instagram.png" %}" alt=""><span>Instagram</span></a></li>
+                            
+                            <li class=""><a ui-sref="employment" target="_blank"><img class="img-responsive img-center" src="{% static "images/icons/empleo.png" %}"alt=""><span>Empleo</span></a></li>
+                        
+                        </ul>
+                      
+                </div>
+                
+    	</div>
+    
+    </footer>
+
+    
+    <!-- PLUGINS -->
+    	 
+    <!-- PLUGINS END -->
+
+</body>
+
+</html> 

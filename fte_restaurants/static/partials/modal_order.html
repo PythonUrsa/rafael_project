@@ -1,0 +1,93 @@
+
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="add-item-radio-label">Añadir item a la orden</h4>
+      </div>
+      
+      <!-- modal-body -->
+      <div class="modal-body">
+        
+        <!-- modal-form -->
+        <div class="modal-form">
+        
+        	<div class="modal-form-row">
+            	
+                <div class="quantity">                	
+                    <input type="number" ng-model="order.quantity" step="1" min="0" class="form-control input-xs input-light-grey"/>                    
+                </div>
+                
+                <div class="resume">
+                	<div class="head">
+                        <h3>{{item.name}}</h3>
+                        <span class="price">RD${{item.price | number:2}}</span>
+                    </div>
+                    <p>{{item.description}}</p>
+                    
+                </div>
+                 
+            </div>
+            
+            <div class="modal-form-row opciones" ng-if="item.selectable_types.length">
+            	
+                
+                <fieldset class="dashed" ng-repeat="selectable_type in item.selectable_types track by $index">
+                
+                	<legend>{{selectable_type.name}}</legend>
+                    <p class="help">Seleccione 1</p>
+                    
+                    <div class="col-lg-4" ng-repeat="type in selectable_type.types track by $index">
+
+                    	<div class="radio"><label><input type="radio"
+                        ng-model="$parent.$parent.order.selectables_associated[$parent.$index]"
+                        name="optionsMasa{{$parent.$index}}"  ng-value="$index">{{type.name}} <small
+                        ng-if="type.price > 0">+ RD${{type.price | number:2}}</small></label></div>
+                    	
+                    </div>
+                </fieldset>
+                
+            </div>
+
+            <div class="modal-form-row opciones" ng-if="item.extra_types.length">
+                <fieldset class="dashed" ng-repeat="extra_type in item.extra_types track by $index">
+                
+                    <legend>{{extra_type.name}}</legend>
+                    <p class="help">Seleccione la cantidad que desee</p>
+                    
+                    <div class="col-lg-4" ng-repeat="extra in extra_type.types track by $index">
+                        <div class="checkbox"><label><input type="checkbox"
+                        ng-model="extra.selected" >{{extra.name}} <small ng-if="extra.price > 0"
+                        >+RD${{extra.price | number:2}}</small></label></div>
+                        
+                    </div>
+                
+                   
+                   
+                </fieldset>
+            </div>
+            
+            <div class="modal-form-row instrucciones">
+            	
+                <textarea ng-model="order.extra_info" placeholder="Instrucciones especiales" class="form-control input-xs input-light-grey">Instrucciones especiales</textarea>
+                
+            </div>
+            
+            <div class="modal-form-row detalle">
+            	
+                <div class="well xs">{{detail}}</div>
+                
+            </div>
+        
+        </div>
+        <!-- modal-form END -->
+        
+        
+      </div>
+      <!-- modal-body END -->
+      
+      <div class="modal-footer">
+        <small class="alert ng-scope" style="color: #ff1b19;" ng-show="error">{{error_text}}</small>
+      	<div class="modal-total">Total: <span class="price">RD${{order.total_item | number:2}}</span></div>
+      
+        <button type="button" class="btn btn-xs btn-clear" ng-click="cancel()" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-xs btn-success" ng-click="ok()">Añadir</button>
+      </div>

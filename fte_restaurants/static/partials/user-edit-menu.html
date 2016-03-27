@@ -1,0 +1,315 @@
+    <div class="clearfix"></div>
+    <!-- main-content -->
+	<div id="main-content">
+		 
+        <!-- content -->
+        <section class="content inner"> 
+        
+            <div class="container">
+        		
+				<div class="row">
+                	
+                    <!-- left content -->
+                    <div class="col-md-12">
+                      
+                        <!-- tabs -->
+                        <nav>
+                            <ul class="nav nav-tabs nav-justified" data-tabs="tabs">
+                                <li class="active"><a data-target="#menu" data-toggle="tab">Menú</a></li>
+                                <li><a data-target="#informacion" data-toggle="tab">Información</a></li>
+                                <li><a data-target="#ordenes" data-toggle="tab">Órdenes</a></li> 
+                            </ul>
+                        </nav>
+                        
+                        <div class="tab-content">
+                        	
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxx -->
+                            <!-- #menu -->
+                            <!-- tab-pane -->
+                            <div class="tab-pane active" id="menu">
+                                
+                                <div class="row buttons">
+                                	<div class="col-sm-3 col-xs-12">
+                                    	<a href="" class="btn btn-primary btn-lg btn-full-width"
+                                        ng-click="newSection(null)">Crear Sección</a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                    	<a href="" class="btn btn-primary btn-lg btn-full-width" 
+                                        ng-click="newProduct(null)">Crear Producto</a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <a href="" class="btn btn-primary btn-lg btn-full-width" 
+                                        ng-click="editExtra()">Editar Extras</a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <a href="" class="btn btn-primary btn-lg btn-full-width" 
+                                        ng-click="editSelectable()">Editar Seleccionables</a>
+                                    </div>
+                                </div>
+                                <!-- panel-group -->
+                                
+                                <div class="panel-group" id="accordion"> 
+                                    
+                                  	<!-- panel item #menu-entrada -->
+                                    <div class="panel panel-primary" ng-repeat="category in categories">
+
+                                        <div class="panel-heading">
+                                          <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion"
+                                            data-target="#menu-{{category.name}}"
+                                            ng-click="newSection(category)"
+                                            >{{category.name}} <i class="fa"></i></a>
+                                          </h4>
+                                          <a href="" ng-click="disable(category, false)" ng-if="category.enabled"
+                                            class="btn btn-success btn-md btn-on-off">On</a>
+                                          <a href="" ng-click="enable(category, false)" ng-if="!category.enabled"
+                                            class="btn btn-clear btn-md btn-on-off">Off</a>
+                                        </div>
+                                        <div id="menu-{{category.name}}" class="panel-collapse collapse in">
+                                          <div class="panel-body">
+                                            
+                                            <div class="row list-menu">
+
+                                                    <article class="col-lg-12" ng-if="!category.items.length">
+                                                        <h4>No hay Items Disponibles</h4>
+                                                    </article>
+                                                  
+                                                    <article class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item"
+                                                        ng-if="category.items.length" ng-repeat="item in category.items"> 
+                                                        <div class="text">
+                                                            <h3>{{item.name}}</h3>
+                                                            <p>{{item.description}}</p>
+                                                        </div>
+                                                        <div class="action">
+                                                            <span class="price">RD${{item.price | number:2}}</span><br/>
+                                                            <a href="" ng-click="disable(item, true)"
+                                                                ng-if="item.enabled"
+                                                                class="btn btn-success btn-xs">On</a>
+                                                            <a href="" ng-click="enable(item, true)"
+                                                                ng-if="!item.enabled"
+                                                                class="btn btn-clear btn-xs">Off</a>
+                                                        </div>
+                                                        <div class="edit">
+                                                        	<a href="" class="resume-item-edit"
+                                                            ng-click="newProduct(item)"><span class="fa fa-edit"
+                                                            ></span></a>
+                                                            <a href="" class="resume-item-remove"
+                                                            ng-click="deleteProduct(item)"><span
+                                                            class="fa fa-close"></span></a>
+                                                        </div>
+                                                    </article>
+                                            </div>
+                                            
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <!-- panel item #menu-entrada END -->
+                                </div>
+                                <!-- panel-group END -->
+                                
+                            </div>
+                            <!-- tab-pane END -->
+                            <!-- #menu END -->
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxx -->
+                             
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxx -->
+                            <!-- #informacion -->
+                            <!-- tab-pane -->
+                            <div class="tab-pane" id="informacion">
+                                <h4 class="pane-title">Información de contacto</h4>
+                                <p><span class="fa fa-map-marker"></span>Dirección <a href=""
+                                class="grey-text" ng-click="editAddress()"><span
+                                class="fa fa-edit"></span></a></p>
+                                <p>{{restaurant.address}}</p>
+                                <p><span class="fa fa-clock-o"
+                                ></span>Horarios <a
+                                href="" ng-click="editSchedule()" class="grey-text"><span
+                                class="fa fa-edit"></span></a></p>
+                                <p> <ul>
+                                    <li ng-repeat="schedule in schedules">{{schedule.start_time |  date:'shortTime'}} - {{schedule.finish_time | date:'shortTime'}}</li>
+                                </ul></p>
+                                <p><span class="fa fa-phone"></span>Telefonos <a href=""
+                                ng-click="editPhones()" class="grey-text"><span
+                                class="fa fa-edit"></span></a></p>
+                                <p ng-repeat="phone in telephones">
+                                {{phone.number}} - {{phone.description}}</p>
+                                <p class="cards"
+                                ><img ng-if="mastercard"
+                                    ng-src="/static/images/mastercard-curved-32px.png" alt=" "
+                                /> <img ng-if="visa"
+                                    ng-src="/static/images/visa-curved-32px.png" alt=" "
+                                /> <img ng-if="american_express"
+                                    ng-src="/static/images/american-express-curved-32px.png" alt=" "
+                                /> <img ng-if="paypal"
+                                    ng-src="/static/images/paypal-curved-32px.png" alt=" " /><a href=""
+                                    ng-click="editPayment()" class="grey-text"><span class="fa fa-edit"
+                                    ></span></a></p>
+                                <p>
+                                    <a href="" ng-click="saveMarker()" class="btn btn-sm btn-green-add">
+                                    Guardar nuevas coordenadas</a>
+                                </p>
+                                <div class="map">
+                                    <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options" events='map.events'>
+                                        <ui-gmap-marker coords="marker.coords" idkey="marker.id" events="marker.events" options="marker.options">
+                                        </ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
+                            </div> 
+                            <!-- tab-pane END -->
+                            <!-- #informacion END -->
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxx -->
+                            
+                            <!-- xxxxxxxxxxxxxxxxxxxxxxxx -->
+                            <!-- #ordenes -->
+                            <!-- tab-pane -->
+                            <div class="tab-pane" id="ordenes">
+                                
+                                <!-- .user-orders-header -->
+<div class="user-orders-header">
+    <div class="row">
+        <div class="col col-md-4 col-xs-12">
+            <span class="orange-text">Ver</span>  
+            <div class="btn-group">
+              <button type="button" class="btn btn-clear dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="filterName">
+                Hoy <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" id="filters">
+                <li><a href="" ng-click="filter(1)">Hoy</a></li>
+                <li><a href="" ng-click="filter(2)">Ayer</a></li>
+                <li><a href="" ng-click="filter(3)">Semana pasada</a></li>
+              </ul>
+            </div>
+        </div>
+        <div class="col col-md-4 col-xs-12">
+            <span class="orange-text">Monto Total: RD${{total | number:2}}</span> 
+        </div>
+        <div class="col col-md-4 col-xs-12">
+            <span class="orange-text">Número de Órdenes: {{totalOrders}}</span>  
+        </div>
+    </div>
+</div>
+<!-- .user-orders-header END -->
+
+<!-- .user-orders-order -->
+<div class="user-orders-order" ng-repeat="order in orders">
+
+    <div class="row order-info"> 
+        <div class="col col-md-4 col-xs-12">
+            Orden: {{order.order_number}}
+        </div> 
+        <div class="col col-md-4 col-xs-12">
+            Tipo de Pago: {{order.payment_method}}
+        </div> 
+        <div class="col col-md-4 col-xs-12">
+            Procesada:
+            <span class="switch-holder">
+                <div class="switch-toggle">
+                  <input id="proc_{{$index}}_si" name="proc{{$index}}" type="radio" ng-model="order.processed"
+                    ng-value="true" ng-change="changeStatus(order, true, true)">
+                  <label for="proc_{{$index}}_si" onclick="">Si</label> 
+                  <input id="proc_{{$index}}_no" name="proc{{$index}}" type="radio" ng-model="order.processed"
+                  ng-value="false" ng-change="changeStatus(order, false, true)">
+                  <label for="proc_{{$index}}_no" onclick="">No</label> 
+                  <a class="btn btn-primary"></a>
+                </div>           
+            </span> 
+        </div>
+    </div>
+    <div class="row order-info"> 
+        <div class="col col-md-4 col-xs-12">
+            Hora: {{order.timestamp}}
+        </div> 
+        <div class="col col-md-4 col-xs-12">
+            Total: RD${{order.total | number:2}}
+        </div> 
+        <div class="col col-md-4 col-xs-12">
+            Entregada:
+            <span class="switch-holder">
+                <div class="switch-toggle">
+                  <input id="entr_{{$index}}_si" name="entr{{$index}}" type="radio" ng-model="order.delivered"
+                    ng-value="true" ng-change="changeStatus(order, true, false)">
+                  <label for="entr_{{$index}}_si" onclick="">Si</label> 
+                  <input id="entr_{{$index}}_no" name="entr{{$index}}" type="radio" ng-model="order.delivered"
+                    ng-value="false" ng-change="changeStatus(order, false, false)">
+                  <label for="entr_{{$index}}_no" onclick="">No</label> 
+                  <a class="btn btn-primary"></a>
+                </div>           
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-xs-12">
+            <p><span class="orange-text"><span class="fa fa-user"></span> {{order.user.first_name + ' ' 
+            + order.user.last_name}}</span> es el dueño de esta órden</p>
+            <p><span class="fa fa-phone"></span> <span class="user-phone">{{order.user.telephone}}</span></p>
+            <p ng-if="order.delivery_address"
+            ><span class="fa fa-map-marker"></span> Enviar a: <span class="user-address orange-text"
+            >{{order.delivery_address.street_name + ' ' + order.delivery_address.street_number + '(' + 
+            order.delivery_address.delivery_zone.name + ', ' + order.delivery_address.city.name + ')'}}</span></p>
+            <p ng-if="!order.delivery_address"><strong>Pick Up</strong></p>
+            <p><small><strong>RCN</strong></small> {{order.rnc.rnc_number}} | {{order.rnc.description}}</p>
+        </div> 
+    </div>
+    
+    <div class="row">
+    
+        <div class="order-resume col-md-9 col-xs-12">
+            
+            <!-- panel -->
+            <div class="panel panel-default" ng-repeat="item in order.items">
+                <div class="panel-body"> 
+                    <div class="row"> 
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 description"> 
+                            <h4>{{item.item.category.name}}-{{item.item.name}}</h4>
+                            <p class="text" ng-repeat="selectable in
+                                item.selectables_associated">{{selectable.name}}
+                                <small ng-if="selectable.price > 0"> + RD${{selectable.price}}
+                            </small></p>
+                            <p class="text"ng-repeat="extra in item.extras">
+                                {{extra.name}}<small ng-if="extra.price > 0"> + RD${{extra.price | number:2}}
+                            </small></p>
+                            <p ng-if="item.extra_info">
+                                Instrucciones especiales: {{item.extra_info}}</p>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-8 col-xs-7 price-total"> 
+                            <strong>RD${{item.item.price | number:2}} x {{item.quantity}}</strong>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 price-unit"> 
+                            <strong>RD${{item.total_item | number:2}}</strong>
+                        </div>
+                        
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 action"> 
+                             
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <!-- panel END -->
+        </div>
+    
+    </div>
+     
+</div>
+<!-- .user-orders-order END -->
+                         <div align="center" ng-show="totalOrders > 20">
+                            <pagination total-items="totalOrders" ng-model="currentPage" items-per-page="20"
+                            ng-change="pageChanged()" next-text="Siguiente" previous-text="Anterior"
+                            first-text="Primera Pagina" first-text="Ultima Pagina"></pagination>
+                        </div>
+                        </div>
+                        <!-- tabs END -->
+                        
+                    </div>
+                    <!-- left content END --> 
+                    
+                </div>
+                 
+            </div> 
+    	</section>
+        <!-- content END -->
+    
+    </div>
+    <!-- #main-content END -->
+    

@@ -1,0 +1,58 @@
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Cambiar contraseña</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body user-info">
+        <form novalidate class="css-form" name="password_form">
+            <table class="table table-default">
+            
+                <tr>
+                    <td class="labeled"><strong>Contraseña actual</strong></td>
+                    <td><input type="password" ng-model="credentials.password" name="password"
+                        class="form-control input-grey input-italic" placeholder="Contraseña actual"
+                        required="" ng-model-options="{ updateOn: 'blur' }">
+                        <span ng-show="password_form.password.$touched &&
+                            password_form.password.$error.required"
+                            class="help-block"><small
+                            >* Por favor ingrese su nueva contraseña actual.</small></span></td>
+                </tr>
+                
+                <tr>
+                    <td class="labeled"><strong>Contraseña nueva</strong></td>
+                    <td><input type="password" ng-model="newPassword" class="form-control input-grey input-italic"
+                            placeholder="Contraseña nueva" required="" minlength="6" name="newPassword"
+                            ng-model-options="{ updateOn: 'blur' }">
+                        <span ng-show="password_form.newPassword.$touched &&
+                            password_form.newPassword.$error.required"
+                            class="help-block"><small
+                            >* Por favor ingrese su nueva contraseña.</small></span>
+                        <span ng-show="password_form.newPassword.$touched &&
+                            password_form.newPassword.$error.minlength"
+                            class="help-block"><small
+                            >* La contraseña debe tener al menos 6 caracteres.</small></span>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="labeled"><strong>Confirmar contraseña</strong></td>
+                    <td><input type="password" ng-model="confirmation" class="form-control input-grey input-italic"
+                            placeholder="Vuelva a escribir su nueva contraseña" required="" minlength="6"
+                            name="confirmation" ng-model-options="{ updateOn: 'blur' }">
+                        <span ng-show="password_form.confirmation.$touched &&
+                        password_form.confirmation.$error.required"
+                        class="help-block"><small
+                        >* Por favor escriba la confirmación de su nueva contraseña.</small></span></td>
+                </tr>
+            
+            </table>
+        </form>
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <alert type="danger" ng-show="submit_error">Error al cambiar la contraseña: {{submit_error}}</alert>
+        <button type="button" class="btn btn-md btn-clear" ng-click="dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-md btn-success" ng-click="ok()"
+        ng-disabled="password_form.$invalid">Guardar</button>
+    </div><!-- /modal-footer -->

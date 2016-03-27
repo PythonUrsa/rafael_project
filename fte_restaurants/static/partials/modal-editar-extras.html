@@ -1,0 +1,51 @@
+    <div class="modal-header">
+        <button type="button" ng-click="cancel()" class="close" data-dismiss="modal"
+        aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Editar Extras</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body">
+        
+       <!-- modal-form -->
+        <div class="modal-form">
+          
+            <div class="modal-form-row">
+                
+                <div class="panel panel-default panel-edit-list no-border">
+                    
+                        <div class="panel-body"> 
+                              
+                                <!-- item -->
+                                <div class="well xs" ng-repeat="extra_type in extra_types"
+                                    ng-class="{'well xs active': isSelected($index),
+                                                'well xs': !isSelected(extra_type.id)}"
+                                    ng-click="changeSelected($index)">  
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
+                                        {{extra_type.name}}
+                                    </div> 
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 action"> 
+                                        <a href="" ng-click="newExtra(extra_type)" data-toggle="modal" data-target="#page-modal"
+                                         class="resume-item-edit"><span class="fa fa-edit"></span></a>
+                                         <a href="" ng-click="delExtraType($index)" class="resume-item-remove"><span class="fa fa-close"></span></a>
+                                    </div> 
+                                </div>
+                                <!-- item END -->
+                        </div>
+                        
+                    </div>
+                    <!-- panel END -->
+
+                <div ng-hide="show_add_button" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 action no-pad-left">
+                    <a href="" ng-click="newExtra(null)" class="btn btn-sm btn-green-add">
+                    Nuevo Extra</a>
+                </div>
+            </div>
+        </div>
+        <!-- modal-form END -->
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" ng-click="cancel()" class="btn btn-md btn-success"
+        data-dismiss="modal">Ok</button>
+    </div><!-- /modal-footer -->

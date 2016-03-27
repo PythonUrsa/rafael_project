@@ -1,0 +1,58 @@
+<div class="modal-login">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="dismiss()" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> 
+        <div class="login-logo"><img ng-src="/static/images/LogoModal.png" alt="main brand logo"></div>
+      </div>
+      
+      <!-- modal-body -->
+      <div class="modal-body">
+        <form novalidate class="css-form" name="login_form">
+          <div class="row"> 
+              <div class="col-xs-12">
+                  <input type="email" ng-model="credentials.email" class="form-control input-grey input-italic"
+                  placeholder="Usuario" required="" name="email" ng-model-options="{ updateOn: 'blur' }"/>
+                  <div ng-show="login_form.$submitted || login_form.email.$touched">
+                    <span ng-show="login_form.email.$error.required" class="help-block"><small
+                    >* Por favor ingrese su email.</small></span>
+                    <span ng-show="login_form.email.$error.email" class="help-block"><small
+                    >El email ingresado no es valido.</small></span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">    
+              <div class="col-xs-12">
+                  <input type="password" ng-model="credentials.password"
+                  class="form-control input-grey input-italic" placeholder="Contraseña"
+                  required="" name="password"/>
+                  <div ng-show="login_form.$submitted || login_form.password.$touched">
+                    <div ng-show="login_form.password.$error.required"><p
+                    class="help-block"><small>* Por favor ingrese su contraseña.</small></p></div>
+                    <span ng-show="login_form.failed" class="help-block"><small
+                      >La combinacion email/contraseña no es correcta.</small></span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 align-right">
+                  <p><a href="{{password_reset}}"><strong>Olvidé mi contraseña</strong></a></p>
+              </div>
+          </div>
+        </form>
+      </div>
+      <!-- modal-body END -->
+      
+      <div class="modal-footer">
+
+        <div class="row">
+            <div class="col-xs-6 no-pad-right">
+                <a href="" ng-click="goToRegister()" class="btn btn-clear btn-md">Registrarme</a>
+            </div> 
+            <div class="col-xs-6 no-pad-left">
+                <a href="" ng-click="ok()" class="btn btn-success btn-md"
+                ng-disabled="login_form.$invalid">Ingresar</a>
+            </div>
+        </div> 
+        
+        </div>
+
+</div>

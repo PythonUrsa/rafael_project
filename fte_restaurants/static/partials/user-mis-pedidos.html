@@ -1,0 +1,78 @@
+<!-- main-content -->
+	<div id="main-content">
+		
+        <!-- page_header -->
+        <header class="page_header" style="background-image:url(/static/images/header-1290x345.jpg);">
+             <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<div class="menu-red">
+                            <ul>
+                            
+                                <li><a href="" ng-click="goToProfile()"
+                                title="Info de Perfil">Info de Perfil</a></li>
+                                
+                                <li><a href="" ng-click="goAddr()"
+                                title="Mis Direcciones">Mis Direcciones</a></li>
+                                
+                                <li class="current"><a href="#" title="Mis Pedidos">Mis Pedidos</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </header>
+        <!-- page_header END -->
+    	  
+        <!-- content -->
+        <section class="content"> 
+        	<!-- content > container -->
+            <div class="container">
+        		
+                <!-- content-triangle -->
+                <div class="content-triangle">
+                	<i class="bg-top"></i>
+                    
+                    <div class="reddot content-head">
+                        <h1 class="page-title">Mis Pedidos</h1>
+                    </div>
+                    
+                    <div class="row loop-search">
+                        <article ng-repeat="order in orders"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
+                            <div class="thumb">
+                                <a href="#"><img class="img-brand img-circle img-responsive img-center"
+                                    ng-src="{{order.restaurant.thumb_logo}}" alt="">
+                                <img class="img-thumb" ng-src="{{order.restaurant.thumb_photo}}" alt=""></a>
+                            </div>
+                            <div class="text">
+                                <a href="#"><h3>{{order.restaurant.name}}</h3></a>
+                                <ul class="attributes">
+                                    <li><i class="fa fa-calendar"></i> <span class="text-light">Pedido hecho el:
+                                    <br /></span>
+                                    <strong>{{order.timestamp}}</strong></li>
+                                </ul>
+                                <table>
+                                    <td class="labeled"></td>
+                                    <td class="action"><a ng-click="goToDetail(order.restaurant.id)"
+                                        class="btn btn-primary">Ir al menú</a> 
+                                    <a ng-click="goToOrder(order.id)" class="btn btn-clear">Ver la orden</a>
+                                </table>
+                            </div>
+                        </article>
+                    </div>
+                    <div align="center" ng-show="totalItems > 20">
+                        <pagination total-items="totalItems" ng-model="currentPage" items-per-page="20"
+                            ng-change="pageChanged()" next-text="Siguiente" previous-text="Anterior" first-text="Primera Pagina" first-text="Ultima Pagina"></pagination>
+                    </div>
+                </div>
+                <!-- .content-triangle END -->
+                
+            </div> 
+            <!-- .container END -->
+    	</section>
+        <!-- section.content END -->
+    
+    </div>
+    <!-- #main-content END -->

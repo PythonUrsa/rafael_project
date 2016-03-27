@@ -1,0 +1,67 @@
+    <div class="modal-header">
+        <button type="button" ng-click="cancel()" class="close" data-dismiss="modal"
+        aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Crear Extra</h4>
+    </div><!-- /modal-header -->
+    
+    <small><p style="text-align:right">Los campos marcados con <font color="red"><small>* </small>
+    </font> son obligatorios.</p></small>
+    <div class="modal-body">
+        <form novalidate class="css-form" name="extra_form">
+        <!-- modal-form -->
+            <div class="modal-form">
+              
+                <div class="modal-form-row">
+                    
+                    <fieldset class="dashed">
+                     
+                    	<div class="col-xs-12">
+                        	<p><span class="legend"><font color="red"><small>* </small>
+                            </font>Nombre del Extra</span> <input type="text"
+                            ng-model="extra_type.name" required="" name="extra_type"
+                            class="form-control input-xs input-light-grey auto-width" placeholder="Nombre del tipo de extra"/></p>
+                        </div> 
+                        
+                        <!-- -->
+
+                        <div class="opcion-row" ng-repeat="extra in extras">
+                            <div class="col-sm-3 col-xs-5">
+                                <p><span class="legend sublegend"><font color="red"><small>* </small>
+                            </font>Nombre Opción</span></p>
+                            </div>
+                            <div class="col-sm-2 col-xs-5">
+                                <p><input type="text" ng-model="extra.name" required="" name="extra"
+                                class="form-control input-xs input-light-grey" placeholder="Nombre"/></p>
+                            </div>
+                            <div class="col-sm-3 col-xs-5">
+                                <p><span class="legend sublegend">Costo Adicional</span></p>
+                            </div>
+                            <div class="col-sm-2 col-xs-5">
+                                <p><input type="text" ng-model="extra.price"
+                                class="form-control input-xs input-light-grey" placeholder="RD$"/></p>
+                            </div>
+                            <div class="col-sm-2 col-xs-2 action">
+                                <a href="" ng-click="delOption($index)" class="resume-item-remove"><span
+                                class="fa fa-close"></span></a>
+                            </div>
+                        </div>
+                      
+                    </fieldset>
+
+                    <div ng-hide="show_add_button" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 action no-pad-left">
+                        <a href="" ng-click="addOption()" class="btn btn-sm btn-green-add">
+                        Agregar opción</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- modal-form END -->
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" ng-click="cancel()" class="btn btn-md btn-clear"
+        data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="ok()"  ng-disabled="extra_form.$invalid"
+            class="btn btn-md btn-success">Guardar</button>
+    </div><!-- /modal-footer -->

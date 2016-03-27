@@ -1,0 +1,42 @@
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal"
+        aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Editar telefonos</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body user-info">
+        
+       <!-- modal-form -->
+        <div class="modal-form">
+          
+            <div class="modal-form-row">
+            
+            	<table class="table table-default">
+                
+                    <tr ng-repeat="phone in telephones">
+                        <td><input type="text" ng-model="phone.number" class="form-control input-dark-grey"
+                            placeholder="Numero"></td>
+                        <td><input type="text" ng-model="phone.description" class="form-control input-dark-grey"
+                            placeholder="Descripcion"></td>
+                        <td><a href="" ng-click="removePhone($index)" class="resume-item-remove"><span
+                        class="fa fa-close"></span></a></td>
+                    </tr>
+				
+                </table>
+                 	
+                <div ng-hide="show_add_button" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 action no-pad-left">
+                    <a href="" ng-click="newPhone()" class="btn btn-sm btn-green-add">
+                    Agregar Telefono</a>
+                </div>
+            </div>
+               
+        </div>
+        <!-- modal-form END -->
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" ng-click="cancel()" class="btn btn-md btn-clear"
+        data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="saveTelephones()" class="btn btn-md btn-success">Guardar</button>
+    </div><!-- /modal-footer -->

@@ -1,0 +1,196 @@
+ <!-- page_header -->
+        <header class="page_header" style="background-image:url(/static/images/header-1290x345.jpg);">
+             <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">&nbsp;</div>
+                </div>
+             </div>
+        </header>
+        <!-- page_header END -->
+    	  
+        <!-- content -->
+        <section class="content"> 
+        	<!-- content > container -->
+            <div class="container">
+        		
+                <!-- content-triangle -->
+                <div class="content-triangle">
+                	<i class="bg-top"></i>
+                    
+                    <fieldset class="reddot fieldset-head">
+                        <legend class="page-title">Revisar órden</legend>
+                    </fieldset> 
+                    
+                    <fieldset class="reddot">
+                        
+                        <table class="table-default table-order">
+                            <tr>
+                                <td class="icon"><span class="fa fa-user"></span></td>
+                                <td class="user-info"><strong class="user-name">{{user.first_name}} {{user.last_name}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="icon"><span class="fa fa-phone"></span></td>
+                                <td class="user-info"><span class="user-phone">{{user.telephone}}</span></td>
+                            </tr>
+                            <tr ng-show="order_type == 'DELIVERY'">
+                                <td class="icon"><span class="fa fa-map-marker"></span></td>
+                                <td class="user-info">Enviar a: <strong class="user-address">
+                                {{selectedAddress.street_name + ' ' + selectedAddress.street_number + '(' + 
+                                selectedAddress.delivery_zone.name + ', ' + selectedAddress.city.name + ')'}}
+                                </strong><a data-toggle="modal" class="edit"  href="" ng-click="open_addr()"
+                                data-target="#page-modal"><span class="fa fa-edit"></span></a><p
+                                ng-if="error_address_zone"><span style="background-color:#FF1B02"><small>Esta direccion no esta dentro de las zonas de envio, por favor seleccione otra.</small>
+                                </span></p></td>
+                            </tr>
+                            <tr>
+                                <td class="icon"><small>RNC</small></td>
+                                
+                                
+                                <td class="user-info"><span class="well xs">{{rncs[0].rnc_number}} | {{rncs[0].description}} <a data-toggle="modal" class="edit"  href="" ng-click="open_rnc()" data-target="#page-modal"><span class="fa fa-edit"></span></a></span></td>
+                                 
+                            </tr>
+                            <tr>
+                                <td class="icon"><small>Tipo de entrega </small></td>
+                                <td><label><input type="radio" name="order_type" value="DELIVERY"
+                                ng-checked="true" ng-model="order_type"> Delivery</label>
+                                <label><input type="radio" name="order_type" value="PICKUP"
+                                ng-model="order_type"> Pick Up</label></td>
+                            </tr>
+                        </table>
+                        
+                    </fieldset>
+                    
+                    <fieldset class="reddot">
+                            
+                            <div class="col-lg-12">
+                            
+                            	<p><textarea class="form-control input-sm input-grey input-italic" rows="3"
+                                 placeholder="Instrucciones especiales para el entregador (opcional)"
+                                 ng-model="additional_info"></textarea></p>
+                            
+                            </div> 
+                    
+                    </fieldset>
+                    
+                    <!-- order-resume -->
+                    <div class="order-resume">
+                    
+                    	<div class="order-resume-header col-xs-12">
+                        
+                        	<h4 class="resume-title">{{restaurant.name}} <small>#{{restaurant.main_food}} #{{restaurant.second_food}}</small></h4> 
+                            <p><span class="fa fa-map-marker"></span> <strong>{{restaurant.address}}</strong></p>
+                        
+                        </div>
+                        
+                        <!-- order-resume-body -->
+                        <div class="order-resume-body col-xs-12">
+                        	
+                            <div class="panel panel-head">
+                            	<div class="panel-body"> 
+                                    <div class="row">
+                                    	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 description">Item</div>
+                                        <div class="col-lg-3 col-md-3 col-sm-8 col-xs-7 price-total">Cantidad</div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 price-unit">Precio</div>
+                                    </div>
+                            	</div>
+                            </div>
+                            
+                        	<!-- item panel -->
+                        	<div class="panel" ng-repeat="order in user_order">
+                            	<div class="panel-body"> 
+                                    <div class="row"> 
+                                    	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 description"> 
+                                            <h4>{{order.item.category.name}}-{{order.item.name}}</h4>
+                                            <p class="text" ng-repeat="selectable in
+                                            order.selectables_associated track by $index">{{order.item.selectable_types[$index].types[selectable].name}}
+                                            <small ng-if="order.item.selectable_types[$index].types[selectable].price > 0"> + RD${{order.item.selectable_types[$index].types[selectable].price | number:2}}
+                                            </small></p>
+                                            <div ng-repeat="type in order.extras">
+                                                <p class="text"ng-repeat="extra in type.types">
+                                                <span ng-if="extra.selected">{{extra.name}}<small
+                                                ng-if="extra.price > 0"> + RD${{extra.price | number:2}}
+                                                </small></span></p>
+                                            </div>
+                                            <p ng-if="order.extra_info">
+                                            Instrucciones especiales: {{order.extra_info}}</p>
+                                        </div>
+                                        
+                                        <div class="col-lg-3 col-md-3 col-sm-8 col-xs-7 price-total"> 
+                                            <strong>RD${{order.item.price | number:2}} x {{order.quantity}}</strong> 
+                                        </div>
+                                        
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 price-unit"> 
+                                            <strong>RD${{order.total_item | number:2}}</strong> 
+                                        </div>
+                                        
+                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 action"> 
+                                            <a href="" class="resume-item-edit" ng-click="open(order.item, order)"><span class="fa fa-edit"></span></a> <a href="" class="resume-item-remove" ng-click="remove($index)"><span class="fa fa-close"></span></a>   
+                                        </div> 
+                                    </div> 
+                                </div>
+                            </div>
+                            <!-- item panel END -->
+                            
+                            <!-- item panel totals -->
+                        	<div class="panel totals">
+                            	<div class="panel-body"> 
+                                    <div class="row"> 
+                                    	<div class="desc col-xs-4">Subtotal</div>
+                                        <div class="amount col-xs-7">RD${{subTotal | number:2}}</div>
+                                        <div class="col-xs-1 action"></div>
+                         			</div>  
+                                    <div class="row"> 
+                                    	<div class="desc col-xs-4">ITBIS</div>
+                                        <div class="amount col-xs-7">RD${{itbis | number:2}}</div>
+                                        <div class="col-xs-1 action"></div>
+                         			</div>
+                                    <div class="row"> 
+                                    	<div class="desc col-xs-4">Delivery fee</div>
+                                        <div class="amount col-xs-7">RD${{restaurant.delivery_cost | number:2}}</div>
+                                        <div class="col-xs-1 action"></div>
+                         			</div>
+                                    <div class="row"> 
+                                    	<div class="desc col-xs-4">Propina</div>
+                                        <div class="amount col-xs-7">RD${{tip | number:2}}</div>
+                                        <div class="col-xs-1 action"></div>
+                         			</div>
+                                    <div class="row"> 
+                                    	<div class="desc col-xs-4">Total</div>
+                                        <div class="amount col-xs-7"><span class="total-total">RD${{getTotal(subTotal, restaurant.delivery_cost) | number:2}}</span></div>
+                                        <div class="col-xs-1 action"></div>
+                         			</div>        
+                        		</div>
+                        	</div>
+                            <!-- item panel totals END -->
+                            
+                            <div class="resume-actions">
+                               
+                              <nav>
+                              <alert type="danger" ng-show="checkout_error">{{checkout_error}}</alert>
+                              <a href="" ng-click="back()" class="btn btn-primary">Atras</a> <a href=""
+                                ng-click="open_pay_cash()" ng-disabled="!user_order.length"
+                                ng-if="accepts_cash()" class="btn btn-success" data-toggle="modal"
+                                data-target="#page-modal">Pagar en efectivo</a>  <a href=""
+                                class="btn btn-success" ng-click="open_pay_card()"
+                                ng-if="accepts_card()" ng-disabled="!user_order.length">Pagar con tarjeta</a>
+                              </nav>
+                              
+                            </div>
+                            
+                        </div>
+                        <!-- order-resume-body END -->
+                    
+                    </div>
+                    <!-- order-resume END -->
+                
+                </div>
+                <!-- .content-triangle END -->
+                
+            </div> 
+            <!-- .container END -->
+            
+    	</section>
+        <!-- section.content END -->
+    
+    </div>
+    <!-- #main-content END -->

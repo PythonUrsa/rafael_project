@@ -1,0 +1,21 @@
+<div class="modal-header">
+        <button type="button" class="close" ng-click="dismiss()" data-dismiss="modal"
+        aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Pagar con tarjeta</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body">
+        
+       <h4 class="red-text">Nota:</h4>
+       <p class="small">Lo estaremos llamando a su teléfono para procesar el pago. ¿Está de acuerto?</p>
+       <p class="grey-text"><i class="fa fa-phone"></i> {{phone}}</p>
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-clear" ng-click="dismiss()"
+        data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-md btn-success" ng-click="confirm()" ng-hide="saving"
+        >Confirmar</button>
+        <a href="" class="btn btn-md btn-success" ng-show="saving">Confirmando <i class="fa fa-spinner"></i></a>
+    </div><!-- /modal-footer -->

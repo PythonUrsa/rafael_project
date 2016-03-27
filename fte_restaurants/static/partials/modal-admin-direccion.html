@@ -1,0 +1,105 @@
+<div class="modal-header">
+        <button type="button" class="close" ng-click="dismiss()" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Cambiar direccion</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body">
+        
+        <!-- panel -->
+        <div class="panel panel-default panel-edit-list">
+        
+        	<div class="panel-body"> 
+            	  
+        			<!-- item -->
+                    <div class="well xs" ng-repeat="addr in addresses"
+                        ng-class="{'well xs active': isSelected($index),
+                                    'well xs': !isSelected(addr.id)}"
+                        ng-click="changeSelected($index)">  
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
+                            {{addr.street_name}} {{addr.street_number}}
+                        </div> 
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"> 
+                            {{addr.delivery_zone.name}}, {{addr.city.name}}
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 principal"
+                        ng-class="{principal: addr.main}" ng-click="set_main(addr.id)"
+                        onmouseover="" style="cursor: pointer"> 
+                            {{addr.main ? "Principal" : "Hacer Principal"}}
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 action"> 
+                            <a href="" ng-click="openEdit($index)" data-toggle="modal" data-target="#page-modal"
+                             class="resume-item-edit"><span class="fa fa-edit"></span></a>
+                             <a href="" ng-click="delAddress($index)" class="resume-item-remove"><span class="fa fa-close"></span></a>
+                        </div> 
+                    </div>
+                    <!-- item END -->
+                    
+                    <!-- item -->
+        	</div>
+            
+        </div>
+        <!-- panel END -->
+        
+        <!-- modal-form -->
+        <div class="modal-form">
+        
+        	<div class="modal-form-row row">
+            	
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                            <input type="text" name="street" placeholder="Calle"
+                                class="form-control input-grey"
+                                ng-model="new_address.street_name">
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 no-pad">
+                            <input type="text" name="addrNum" placeholder="Número"
+                                class="form-control input-grey"
+                                ng-model="new_address.street_number">
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-pad">
+                            <select ng-model="new_address.city"
+                                ng-options="city.id as city.name for city in cities.objects"
+                                id="city" name="city" class="form-control input-grey">
+                                <option value="">Ciudad</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                            <select ng-model="new_address.delivery_zone"
+                                ng-options="zone.id as zone.name for zone in zones.objects"
+                                id="selectbasic" name="selectbasic"
+                                class="form-control input-grey" required>
+                                <option value="">Sector</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row no-pad">
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-pad">
+                                <input type="text" name="addrName" placeholder="Nombre, ej: Oficina (opcional)"
+                                class="form-control input-grey" ng-model="new_address.associated_name">
+                        </div>
+                        
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-pad">
+                                <input type="text" name="reference" placeholder="Referencia (opcional)"
+                                class="form-control input-grey" ng-model="new_address.reference">
+                            </div>
+                        
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 no-pad pull-right">
+                            <a href="" ng-click="addAddress()" class="btn btn-green-add btn-full-width">
+                            Guardar dirección</a>
+                        </div>
+                
+            </div>
+            
+    	</div>
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" ng-click="dismiss()" class="btn btn-md btn-clear" data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="ok()" class="btn btn-md btn-success">Guardar</button>
+    </div><!-- /modal-footer -->

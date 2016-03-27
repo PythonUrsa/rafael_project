@@ -1,0 +1,167 @@
+<!-- main-content -->
+	<div id="main-content">
+		
+        <!-- page_header -->
+        <header class="page_header" style="background-image:url(/static/images/header-1290x345.jpg);">
+             <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<div class="menu-red">
+                            <ul>
+                            
+                                <li class="current"><a href="" ng-click="goToProfile()" title="Info de Perfil">Info de Perfil</a></li>
+                                
+                                <li><a href="" ng-click="goAddr()" title="Mis Direcciones">Mis Direcciones</a></li>
+                                
+                                <li><a href="" ng-click="goToOrders()" title="Mis Pedidos">Mis Pedidos</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </header>
+        <!-- page_header END -->
+    	  
+        <!-- content -->
+        <section class="content"> 
+        	<!-- content > container -->
+            <div class="container">
+        		
+                <!-- content-triangle -->
+                <div class="content-triangle">
+                	<i class="bg-top"></i>
+                    
+                    <div class="reddot content-head">
+                        <h1 class="page-title">Info de perfil</h1>
+                    </div>
+                    
+                    <div class="row">
+                    	<div class="col-xs-12">
+                            <div class="pull-left" ng-show="!updating"><a href="" ng-click="updateProfile()"
+                            class="btn btn-primary btn-icon">Guardar <i class="fa fa-floppy-o"></i></a></div>
+                            <div class="pull-left" ng-show="updating"><a href=""
+                            class="btn btn-primary btn-icon">Guardando <i class="fa fa-spinner"></i></a></div>
+                            <div class="pull-right"><p class="user-date">Se unió el {{user.date_joined | date}}</p></div>
+                        </div>
+                    </div>
+                    
+                    <div class="row user-info">
+                    
+                    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        	<div class="user-thumb">
+                                <img ng-show="user.user_picture  && !profile_picture" class="img-brand img-circle img-responsive img-center img-shadow" ng-src="{{user.user_picture}}" alt="">
+                                <img ng-hide="user.user_picture || profile_picture" class="img-brand img-circle img-responsive img-center img-shadow" src="http://placehold.it/320x320" alt="">
+                                <img ng-show="profile_picture" class="img-brand img-circle img-responsive img-center img-shadow" ng-src="{{profile_picture.resized.dataURL}}" alt="">
+                                <div class="input-group">
+                                    <input id="picture_register"
+                                            type="file"
+                                            accept="image/*" 
+                                            image="profile_picture" 
+                                            resize-max-height="320"
+                                            resize-max-width="320"
+                                            resize-quality="1" />
+                                    <span class='label label-info' id="upload-file-info"></span>
+                                </div>
+                            </div>
+                            
+                            <small class="alert" ng-if="!user.is_confirmed">Email aún por verificar</small>
+                            <small class="alert" style="color:green" ng-if="user.is_confirmed">Email verificado</small>
+                            <small class="alert"><a href="" ng-if="!user.is_confirmed"
+                                ng-click="confirmEmail()">Enviar mail de confirmacion</a></small>
+                        </div>
+                        
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        
+                        	<table class="table table-default">
+                            
+                            	<tr>
+                                	<td class="labeled"><strong>Nombre</strong></td>
+                                    <td><input type="text" name="first_name" placeholder="Nombre"
+                                            class="form-control input-grey input-italic"
+                                            ng-required="true" ng-model="user.first_name">
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td class="labeled"><strong>Apellido</strong></td>
+                                    <td><input type="text" name="lastname" placeholder="Apellido"
+                                        class="form-control input-grey input-italic" ng-required="true"
+                                        ng-model="user.last_name">
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td class="labeled"><strong>Email</strong></td>
+                                    <td><input type="email" name="email" placeholder="some_mail@mail.com"
+                                            class="form-control input-grey input-italic" required
+                                            ng-model="user.email">
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td class="labeled"><strong>Género</strong></td>
+                                    <td><label><input type="radio" name="gender" value="M"
+                                    ng-checked="user.gender=='M'" ng-model="user.gender"> Masculino</label>
+                                    <label><input type="radio" name="gender" value="F"
+                                    ng-checked="user.gender=='F'" ng-model="user.gender"> Femenino</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="labeled"><strong>Cumpleaños</strong></td>
+                                    <td>
+                                        <p class="input-group">
+                                            <input type="text"
+                                                class="form-control input-grey input-italic"
+                                                datepicker-popup="{{format}}" 
+                                                ng-model="user.date_of_birth"
+                                                is-open="opened" 
+                                                min-date="1-1-1900" 
+                                                max-date="'2015-06-22'"
+                                                datepicker-options="dateOptions" 
+                                                ng-required="true" 
+                                                close-text="Close"
+                                                placeholder="dd/mm/aaaa"/>
+                                                <span class="input-group-btn">
+                                                    <button type="button" 
+                                                            class="btn btn-default"
+                                                            ng-click="open($event)">
+                                                            <i class="fa fa-calendar" style="font-size: 25px;"></i>
+                                                    </button>
+                                                </span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td class="labeled"><strong>Teléfono</strong></td>
+                                    <td><input type="text" name="phone" placeholder="Escriba los números sin guión"
+                                     class="form-control input-grey input-italic" required
+                                     ng-model="user.telephone"
+                                    maxlength="10"></td>
+                                </tr>
+                                
+                                <tr>
+                                	<td class="labeled"></td>
+                                    <td class="action"><a href="" ng-click="openPass()" data-toggle="modal" data-target="#page-modal" class="btn btn-green-add">Cambiar clave</a> <a href="" data-toggle="modal" ng-click="open_rnc()" class="btn btn-green-add">Mis RNC</a>
+                                </tr>
+                                <tr ng-show="error">
+                                 <small class="alert ng-scope" style="color: #ff1b19;" >{{error_text}}</small>
+                                </tr>
+                            </table>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+                <!-- .content-triangle END -->
+                
+            </div> 
+            <!-- .container END -->
+            
+    	</section>
+        <!-- section.content END -->
+    
+    </div>
+    <!-- #main-content END -->

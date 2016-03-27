@@ -1,0 +1,36 @@
+<div id="main-content">
+        <section class="content"> 
+            <div class="container">
+                <div class="row">
+                    <p class="help-block col-xs-12" ng-if="restaurants.meta.total_count > 0"
+                    ><strong>Su búsqueda arrojó los siguientes restaurantes</strong></p>
+                    <p class="help-block col-xs-12" ng-if="restaurants.meta.total_count == 0"
+                    ><strong>No hay restaurantes disponibles con el criterio seleccionado</strong></p>
+                </div>
+        		<div class="row loop-search">
+                    <article ng-repeat="restaurant in restaurants.objects"
+                        class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
+                        <div class="thumb">
+                            <a href="" ng-click="goToDetail(restaurant.id)"><img
+                                class="img-brand img-circle img-responsive img-center"
+                                ng-src="{{restaurant.thumb_logo}}" alt="">
+                            <img class="img-thumb" ng-src="{{restaurant.thumb_photo}}" alt=""></a>
+                        </div>
+                        <div class="text">
+                            <a href="" ng-click="goToDetail(restaurant.id)"><h3>{{restaurant.name}}</h3></a>
+                            <p class="category">#{{restaurant.main_food}} #{{restaurant.second_food}}</p> 
+                            <ul class="attributes">
+                                <li><i class="fa fa-map-marker"></i> {{restaurant.address}}</li>
+                                <li><i class="fa fa-clock-o"></i> {{restaurant.delivery_time}} min</li>
+                                <li><i class="fa fa-money"></i> <span class="text-light">Mínimo:</span> <strong
+                                ><span class="currency">RD$</span> {{restaurant.order_minimum}}</strong></li>
+                            </ul>
+                            <a ng-click="goToDetail(restaurant.id)" class="btn btn-primary">Ir al menú</a>
+                        </div>
+                    </article>  
+                </div>
+<!-- /.row -->
+            </div> 
+    	</section>
+    
+</div>

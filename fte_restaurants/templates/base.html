@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>F2E</title>
+
+	<!-- fonts.googleapis CSS -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	{% block stylesheets %}
+
+        <!-- Bootstrap -->
+        <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "css/style.css" %}" rel="stylesheet">
+        <link href="{% static "css/jquery-ui.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/jquery-ui.structure.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/jquery-ui.theme.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/responsive-calendar.css" %}" rel="stylesheet">
+        <link href="{% static "angucomplete-alt/angucomplete-alt.css" %}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    {% endblock %}
+
+    {% block scripts %}
+
+        <script src="{% static "underscore/underscore-min.js" %}"></script>
+        <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
+        <script src="{% static "jquery-ui/jquery-ui.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="{% static "js/date-es-DO.js" %}"></script>
+        <script src="{% static "underscore.string/dist/underscore.string.min.js" %}"></script>
+        <script src="{% static "angular/angular.min.js" %}"></script>
+        <script src="{% static "angular-resource/angular-resource.min.js" %}"></script>
+        <script src="{% static "angular-ui-router/release/angular-ui-router.min.js" %}"></script>
+        <script src="{% static "angular-bootstrap/ui-bootstrap-tpls.min.js" %}"></script>
+        <script src="{% static "angucomplete-alt/angucomplete-alt.js" %}"></script>
+        <script src="{% static "spin.js/spin.js" %}"></script>
+        <script src="{% static "angular-spinner/angular-spinner.js" %}"></script>
+        <script src="{% static "angular-sanitize/angular-sanitize.min.js" %}"></script>
+        <script src="{% static "angular-cookies/angular-cookies.min.js" %}"></script>
+        <script src="{% static "angularjs-imageupload-directive/public/javascripts/imageupload.js" %}"></script>
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCs-wxRoRho5EoH5s8_IBF-u4d21m91upM&sensor=false">
+        </script>
+
+        <script src="{% static "lodash/dist/lodash.js" %}"></script>
+        <script src="{% static "angular-google-maps/dist/angular-google-maps.js" %}"></script>
+        <script src="{% static "angular-social-links/angular-social-links.js" %}"></script>
+
+        <script src="{% static "js/customs.js" %}"></script>
+        <script src="{% static "js/app.js" %}"></script>
+        <script src="{% static "js/filters.js" %}"></script>
+        <script src="{% static "js/services/resources.js" %}"></script>
+        <script src="{% static "js/services/NavigationService.js" %}"></script>
+        <script src="{% static "js/services/loginModal.js" %}"></script>
+        <script src="{% static "js/services/changePassModal.js" %}"></script>
+        <script src="{% static "js/services/editAddressModal.js" %}"></script>
+        <script src="{% static "js/controllers/homeController.js" %}"></script>
+        <script src="{% static "js/controllers/searchController.js" %}"></script>
+        <script src="{% static "js/controllers/detailController.js" %}"></script>
+        <script src="{% static "js/controllers/modalRNCController.js" %}"></script>
+        <script src="{% static "js/controllers/checkOrderController.js" %}"></script>
+        <script src="{% static "js/controllers/modalOrderController.js" %}"></script>
+        <script src="{% static "js/controllers/loginController.js" %}"></script>
+        <script src="{% static "js/controllers/modalPayCardController.js" %}"></script>
+        <script src="{% static "js/controllers/modalPayCashController.js" %}"></script>
+        <script src="{% static "js/controllers/registerController.js" %}"></script>
+        <script src="{% static "js/controllers/baseController.js" %}"></script>
+        <script src="{% static "js/controllers/userProfileController.js" %}"></script>
+        <script src="{% static "js/controllers/userProfileEditController.js" %}"></script>
+        <script src="{% static "js/controllers/changePasswordController.js" %}"></script>
+        <script src="{% static "js/controllers/userAddressesController.js" %}"></script>
+        <script src="{% static "js/controllers/editAddressModalController.js" %}"></script>
+        <script src="{% static "js/controllers/confirmationController.js" %}"></script>
+        <script src="{% static "js/controllers/modalAddressController.js" %}"></script>
+        <script src="{% static "js/controllers/userOrderController.js" %}"></script>
+        <script src="{% static "js/controllers/termsController.js" %}"></script>
+
+    {% endblock scripts %}
+
+
+</head>
+
+</html> 

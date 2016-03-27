@@ -1,0 +1,38 @@
+<div class="modal-header">
+        <button type="button" class="close"  ng-click="dismiss()" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Pagar en efectivo</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body">
+        
+       <h4 class="red-text">Cambio para...</h4>
+       <p class="small">Ingrese el monto con el que pagara al momento de la entrega.</p>
+        
+        <!-- modal-form -->
+        <div class="modal-form">
+        
+        	<div class="modal-form-row row">
+            	
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 no-pad-right"> 
+                    <input type="text" class="form-control input-xs input-light-grey center"
+                        placeholder="1" value="" ng-model="amount"/>
+                </div> 
+                
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 no-pad center"> 
+                    <p><small>Total</small> <strong class="green-text">RD${{total | number:2}}</strong></p>
+                </div> 
+                
+            </div>
+            
+    	</div>
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <p><h4 class="modal-title">Cambio</h4>
+            <strong ng-if="amount">RD${{amount - total | number:2}}</strong>
+        </p>
+        <button type="button" class="btn btn-md btn-clear" ng-click="dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-md btn-success" ng-click="confirm()" ng-hide="saving">Confirmar</button>
+        <a href="" class="btn btn-md btn-success" ng-show="saving">Confirmando <i class="fa fa-spinner"></i></a>
+    </div><!-- /modal-footer -->

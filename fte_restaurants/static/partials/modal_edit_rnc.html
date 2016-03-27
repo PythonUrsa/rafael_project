@@ -1,0 +1,84 @@
+<div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Cambiar RNC</h4>
+    </div><!-- /modal-header -->
+    
+    <div class="modal-body">
+        
+        <!-- panel -->
+        <div class="panel panel-default panel-edit-list">
+        
+        	<div class="panel-body"> 
+            	  
+        			<!-- item -->
+                    <div class="well xs" ng-repeat="rnc in rncs | orderBy:'main':true" ng-class="{active: rnc.main}">  
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
+                            {{rnc.rnc_number}}
+                        </div> 
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"> 
+                            {{rnc.description}}
+                        </div> 
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 principal" ng-class="{principal: rnc.main}" ng-click="set_main(rnc.id)" onmousemove="" style="cursor: pointer"> 
+                            {{rnc.main ? "Principal" : "Hacer Principal"}}
+                        </div> 
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 action"> 
+                            <a href="" ng-click="load(rnc)" class="resume-item-edit"><span class="fa fa-edit"></span></a> <a href="" ng-click="delete(rnc)" class="resume-item-remove"><span class="fa fa-close"></span></a>   
+                        </div> 
+                    </div>
+                    <!-- item END -->
+                    
+                    <!-- item -->
+        	</div>
+            
+        </div>
+        <!-- panel END -->
+        
+        <!-- modal-form -->
+        <div class="modal-form">
+            <form novalidate class="css-form" name="rnc_form">
+            	<div class="modal-form-row row">
+                	
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 no-pad-right"> 
+                        <input type="text" ng-model="new_rnc.rnc_number" required=""
+                                ng-model-options="{ updateOn: 'blur' }" minlength="9" maxlength="9"
+                        class="form-control input-xs input-light-grey input-italic"
+                        ng-change="isNumber()"
+                        placeholder="RNC" value="" name="rnc_number" />
+                    </div> 
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-pad"> 
+                        <input type="text" ng-model="new_rnc.description" required=""
+                        class="form-control input-xs input-light-grey input-italic"
+                        ng-model-options="{ updateOn: 'blur' }" name="description"
+                        placeholder="Razón social" value=""/>
+                    </div>
+                    
+                    <div ng-show="show_add_button" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 action no-pad-left"> 
+                        <button type="button" ng-click="add()" class="btn btn-sm btn-green-add"
+                        ng-disabled="rnc_form.$invalid">Agregar</button>
+                    </div>
+                    <div ng-hide="show_add_button" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 action no-pad-left"> 
+                        <button type="button" ng-click="edit()" ng-disabled="rnc_form.$invalid"
+                        class="btn btn-sm btn-green-add">Editar</button>
+                    </div>
+                </div>
+                <span ng-show="rnc_form.rnc_number.$touched &&
+                        (rnc_form.rnc_number.$error.required || rnc_form.rnc_number.$error.number)"
+                        class="help-block"><small
+                        >* Por favor ingrese un RNC valido (9 dígitos)</small></span>
+                <span ng-show="rnc_form.description.$touched &&
+                        rnc_form.description.$error.required"
+                        class="help-block"><small
+                        >* Por favor ingrese la razon social</small></span>
+                <alert ng-show="submit_error"
+                        class="help-block"><small
+                        >* Error guardando RNC: {{submit_error}}</small></alert>
+            </form>
+    	</div>
+        
+    </div><!-- /modal-body -->
+    
+    <div class="modal-footer">
+        <button type="button" ng-click="cancel()" class="btn btn-md btn-clear" data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="cancel()" class="btn btn-md btn-success">Guardar</button>
+    </div><!-- /modal-footer -->

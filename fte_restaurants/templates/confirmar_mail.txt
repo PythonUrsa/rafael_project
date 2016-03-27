@@ -1,0 +1,5 @@
+Confirmación del mail {{email}} en Food To Eat.
+Si solicitaste la confirmacion sigue el siguiente link para confirmar: {{confirmation_link}}
+
+Saludos,
+El equipo de Food to Eat
